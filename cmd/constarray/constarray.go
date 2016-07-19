@@ -259,6 +259,14 @@ func (g *Generator) generate(typeName string) {
 	}
 	g.Printf("\t}\n")
 	g.Printf("}\n")
+
+	g.Printf("\nfunc %[1]sValuesAsInterface() []interface{} {\n", typeName)
+	g.Printf("\treturn []interface{}{\n")
+	for _, f := range values {
+		g.Printf("\t\t%[1]s,\n", f.name)
+	}
+	g.Printf("\t}\n")
+	g.Printf("}\n")
 	/*
 		runs := splitIntoRuns(values)
 		// The decision of which pattern to use depends on the number of
