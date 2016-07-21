@@ -325,7 +325,7 @@ func (f *File) genDecl(node ast.Node) bool {
 			// types.Const, and extract its value.
 			obj, ok := f.pkg.defs[name]
 			if !ok {
-				log.Fatalf("no value for constant %s", name)
+				continue
 			}
 			info := obj.Type().Underlying().(*types.Basic).Info()
 			if info&types.IsString == 0 {
