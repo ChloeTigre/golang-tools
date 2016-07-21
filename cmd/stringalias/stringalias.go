@@ -324,6 +324,7 @@ func (f *File) genDecl(node ast.Node) bool {
 			// bit tricky: look up the object declared by the name, find its
 			// types.Const, and extract its value.
 			obj, ok := f.pkg.defs[name]
+			var v Value
 			if ok {
 				info := obj.Type().Underlying().(*types.Basic).Info()
 				if info&types.IsString == 0 {
