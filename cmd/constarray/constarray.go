@@ -373,11 +373,11 @@ func (f *File) genDecl(node ast.Node) bool {
 			// types.Const, and extract its value.
 			obj, ok := f.pkg.defs[name]
 			var v Value
-			if ok {
-				info := obj.Type().Underlying().(*types.Basic).Info()
-				if info&types.IsString == 0 {
-					log.Fatalf("can't handle non-integer constant type %s", typ)
-				}
+			if ok && false {
+				// info := obj.Type().Underlying().(*types.Basic).Info()
+				// if info&types.IsString == 0 {
+				// 	log.Fatalf("can't handle non-integer constant type %s", typ)
+				// }
 				value := obj.(*types.Const).Val() // Guaranteed to succeed as this is CONST.
 				if value.Kind() != exact.String {
 					log.Fatalf("can't happen: constant is not a string %s", name)
